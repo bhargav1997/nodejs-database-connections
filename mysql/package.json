@@ -1,0 +1,14 @@
+{
+  "name": "node-mysql-authentication",
+  "version": "1.0.0",
+  "description": "Authentication and authorization handling in Node.js with MySQL",
+  "main": "authentication.js",
+  "scripts": {
+    "start": "node authentication.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
