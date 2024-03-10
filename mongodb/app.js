@@ -17,6 +17,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Middle ware
+app.use((req, res, next) => {
+  if (!client.isConnected()) {
+    client.connect(err => {
+      if (err) {
+        console.error(err);
+        res.status(500).send({ error: 'Database connection failed' });
+        return;
+      }
+      req.db = client.db(process.env.DB_NAME);
+      next();
+    });
+  } else {
+    req.db = client.db(process.env.DB_NAME);
+    next();
+  }
+});
+
+
 db.connect().then((database) => {
   // Now you can use the `database` object to interact with your database
   // Routes --Authentication
